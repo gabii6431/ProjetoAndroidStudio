@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fases">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="291dp"
+        android:layout_height="98dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginRight="60dp"
+        android:gravity="center|center_horizontal"
+        android:text="@string/fases"
+        android:textSize="30sp"
+        app:fontFamily="@font/roboto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnFacil"
+        android:layout_width="255dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginRight="76dp"
+        android:text="@string/btnFacil"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/btnMedio"
+        android:layout_width="255dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="68dp"
+        android:text="@string/btnMedio"
+        app:layout_constraintEnd_toEndOf="@+id/btnFacil"
+        app:layout_constraintTop_toBottomOf="@+id/btnFacil" />
+
+    <Button
+        android:id="@+id/btnDificil"
+        android:layout_width="255dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="68dp"
+        android:text="@string/btnDificil"
+        app:layout_constraintEnd_toEndOf="@+id/btnMedio"
+        app:layout_constraintTop_toBottomOf="@+id/btnMedio" />
+</android.support.constraint.ConstraintLayout>

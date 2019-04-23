@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Digitando</string>
+    <string name="btnJogar">Jogar</string>
+    <string name="btnSair">Sair</string>
+    <string name="fases">Níve de Dificuldade</string>
+    <string name="btnFacil">Fácil</string>
+    <string name="btnDificil">Difícil</string>
+    <string name="btnMedio">Médio</string>
+    <string name="moduloFacil1">Módulo 1</string>
+    <string name="moduloFacil2">Módulo 2</string>
+    <string name="moduloFacil3">Módulo 3</string>
+    <string name="faseFacil">Fase Fácil</string>
+    <string name="tempoRestante">Tempo Restante</string>
+    <string name="digite">Digite a palavra</string>
+</resources>
