@@ -15,6 +15,10 @@
     <string name="tempoFacil">60</string>
     <string name="enviar">Enviar</string>
     <string name="proxima">Próxima Palavra</string>
+    <string name="proximoModulo">Próximo Módulo</string>
+    <string name="parabensProxModulo">Parabéns!</string>
+    <string name="avancouProxModulo">Você avançou de Módulo!</string>
+    <string name="estaProntoProxModulo">Está Pronto para mais um?</string>
     <string name="errou">Tente Novamente</string>
     <string name="erro1">Ops!</string>
     <string name="erro2">O correto seria:</string>
