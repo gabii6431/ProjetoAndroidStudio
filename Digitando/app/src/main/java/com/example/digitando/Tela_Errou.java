@@ -6,24 +6,24 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class Tela_acertou extends AppCompatActivity implements View.OnClickListener {
+public class Tela_Errou extends AppCompatActivity implements View.OnClickListener {
 
-    private Button btnProximaPalavra;
+    private Button btnTentaNovamente;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tela_acertou);
+        setContentView(R.layout.activity_tela__errou);
 
-        btnProximaPalavra = (Button) findViewById(R.id.btnProximaPalavra);
-        btnProximaPalavra.setOnClickListener(this);
-
+        btnTentaNovamente = (Button) findViewById(R.id.btnTenteNovamente);
+        btnTentaNovamente.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        if(v == btnProximaPalavra){
+        if(v == btnTentaNovamente)
+        {
             Intent i = new Intent(this, Palavras_Faceis.class);
+            startActivity(i);
         }
-
     }
 }

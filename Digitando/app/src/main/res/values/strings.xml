@@ -15,4 +15,11 @@
     <string name="tempoFacil">60</string>
     <string name="enviar">Enviar</string>
     <string name="proxima">Próxima Palavra</string>
+    <string name="errou">Tente Novamente</string>
+    <string name="erro1">Ops!</string>
+    <string name="erro2">O correto seria:</string>
+    <string name="acertou1">Parabéns!</string>
+    <string name="acertou2">Você</string>
+    <string name="acertou3">Acertou !!!</string>
+
 </resources>

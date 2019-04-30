@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Tela_acertou"></activity>
+        <activity android:name=".Tela_Errou"></activity>
+        <activity android:name=".Tela_acertou" />
         <activity android:name=".Palavras_Faceis" />
         <activity android:name=".Modulos_Facil" />
         <activity android:name=".Fases" />
