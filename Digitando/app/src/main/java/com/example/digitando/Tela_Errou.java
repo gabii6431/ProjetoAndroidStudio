@@ -1,12 +1,13 @@
 package com.example.digitando;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class Tela_Errou extends AppCompatActivity implements View.OnClickListener {
+public class Tela_Errou extends Activity implements View.OnClickListener {
 
     private Button btnTentaNovamente;
     @Override

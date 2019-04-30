@@ -64,7 +64,7 @@
         app:layout_constraintStart_toEndOf="@+id/editText"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.429"
-        app:srcCompat="@drawable/palavra" />
+        android:src="@drawable/palavra" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -77,7 +77,7 @@
         app:layout_constraintHorizontal_bias="0.437"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:srcCompat="@drawable/cronometro" />
+        android:src="@drawable/cronometro" />
 
     <TextView
         android:id="@+id/textView8"

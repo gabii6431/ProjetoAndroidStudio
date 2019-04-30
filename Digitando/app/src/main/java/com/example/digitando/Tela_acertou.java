@@ -1,12 +1,13 @@
 package com.example.digitando;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class Tela_acertou extends AppCompatActivity implements View.OnClickListener {
+public class Tela_acertou extends Activity implements View.OnClickListener {
 
     private Button btnProximaPalavra;
     @Override
@@ -23,6 +24,7 @@ public class Tela_acertou extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         if(v == btnProximaPalavra){
             Intent i = new Intent(this, Palavras_Faceis.class);
+            startActivity(i);
         }
 
     }

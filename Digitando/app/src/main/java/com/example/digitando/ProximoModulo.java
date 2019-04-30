@@ -1,9 +1,10 @@
 package com.example.digitando;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class ProximoModulo extends AppCompatActivity {
+public class ProximoModulo extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
