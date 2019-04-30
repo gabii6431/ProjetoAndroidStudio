@@ -25,5 +25,7 @@
     <string name="acertou1">Parabéns!</string>
     <string name="acertou2">Você</string>
     <string name="acertou3">Acertou !!!</string>
+    <string name="avancouNivel">Você avançou de nível!</string>
+    <string name="proximoNivel">Próximo Nível</string>
 
 </resources>

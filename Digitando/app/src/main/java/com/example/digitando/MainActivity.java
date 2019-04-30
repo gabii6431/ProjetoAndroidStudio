@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             this.finish();
         }
         if (v == btnSair){
+            Intent i = new Intent(this, Avancou_Nivel.class);
+            startActivity(i);
             this.finish();
         }
 
