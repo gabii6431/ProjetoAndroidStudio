@@ -15,8 +15,9 @@
         android:layout_marginRight="60dp"
         android:gravity="center|center_horizontal"
         android:text="@string/fases"
+        android:textColor="#FBB002"
         android:textSize="30sp"
-        app:fontFamily="@font/roboto"
+        app:fontFamily="@font/basic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,7 +28,10 @@
         android:layout_marginTop="56dp"
         android:layout_marginEnd="76dp"
         android:layout_marginRight="76dp"
+        android:background="@drawable/propriedade_button"
         android:text="@string/btnFacil"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -36,7 +40,10 @@
         android:layout_width="255dp"
         android:layout_height="60dp"
         android:layout_marginTop="68dp"
+        android:background="@drawable/propriedade_button"
         android:text="@string/btnMedio"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/btnFacil"
         app:layout_constraintTop_toBottomOf="@+id/btnFacil" />
 
@@ -45,7 +52,10 @@
         android:layout_width="255dp"
         android:layout_height="60dp"
         android:layout_marginTop="68dp"
+        android:background="@drawable/propriedade_button"
         android:text="@string/btnDificil"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/btnMedio"
         app:layout_constraintTop_toBottomOf="@+id/btnMedio" />
 </android.support.constraint.ConstraintLayout>
