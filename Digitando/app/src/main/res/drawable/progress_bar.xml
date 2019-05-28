@@ -6,22 +6,22 @@
             <shape>
                 <corners android:radius="10dip" />
 
-                <solid android:color="#0966a0" />
+                <solid android:color="#079dfa" />
             </shape>
         </clip>
 
-        <color android:color="#0966a0" />
+        <color android:color="#079dfa" />
     </item>
     <item android:id="@android:id/progress">
         <clip>
             <shape>
                 <corners android:radius="10dip" />
 
-                <solid android:color="#0966a0" />
+                <solid android:color="#079dfa" />
             </shape>
         </clip>
 
-        <color android:color="#0966a0" />
+        <color android:color="#079dfa" />
     </item>
 
 </layer-list>
