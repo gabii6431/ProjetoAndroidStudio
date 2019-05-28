@@ -30,8 +30,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
             this.finish();
         }
         if (v == btnSair){
-            Intent i = new Intent(this, Avancou_Nivel.class);
-            startActivity(i);
             this.finish();
         }
 
