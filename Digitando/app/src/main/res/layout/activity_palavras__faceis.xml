@@ -37,7 +37,7 @@
         app:layout_constraintTop_toBottomOf="@+id/seekBar2" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/palavraEscrita"
         android:layout_width="252dp"
         android:layout_height="53dp"
         android:layout_marginStart="32dp"
@@ -50,7 +50,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/tocaPalavra"
         android:layout_width="89dp"
         android:layout_height="79dp"
         android:layout_marginStart="8dp"
@@ -63,7 +63,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/editText"
+        app:layout_constraintStart_toEndOf="@+id/palavraEscrita"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.429"
         android:src="@drawable/palavra" />

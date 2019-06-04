@@ -8,24 +8,64 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Set;
 
-public class Palavras_Faceis extends Activity implements View.OnClickListener {
+public class Palavras_Faceis extends Activity implements View.OnClickListener, MediaPlayer.OnCompletionListener {
     private Button btnEnviar;
-    private SharedPreferences preferenciasModulo;
+    private int contPalavra;
+    private EditText palavraEscrita;
+    private boolean modulo1 = false , modulo2 = false , modulo3 = false;
+    private SharedPreferences preferencia;
     private ArrayList<MediaPlayer> media = new ArrayList<MediaPlayer>(); // vetor de audios [0-9] - modulo 1 [10-19] - modulo 2 [20-29] - modulo 3
+    private ImageButton tocaPalavra;
+    private int cont = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        media = criaAudios();
         setContentView(R.layout.activity_palavras__faceis);
+
+        preferencia = getSharedPreferences("preferencia",0);
+        int modulo = preferencia.getInt("modulo", 0);
+        contPalavra = preferencia.getInt("palavra",0);
+
+        //verificar em qual modulo ele esta
+        //se modulo 1 - ir no vetor de 0-9
+        //se modulo 2 - ir no vetor de 10-19
+        //se modulo 3 - ir no  vetor de 20-29
+
+        if(modulo == 1 && !modulo1)
+        {
+            contPalavra = 0;
+            modulo1 = true;
+        }
+        else if(modulo == 2 && !modulo2)
+        {
+            contPalavra = 10;
+            modulo2 = true;
+        }
+        else if (modulo == 3 && !modulo3)
+        {
+            contPalavra = 20;
+            modulo3 = true;
+        }
+
+        media.get(contPalavra).setOnCompletionListener(this);
+        media.get(contPalavra).start();
 
         //verificar em qual palavra que o usuario esta;
         btnEnviar = (Button) findViewById(R.id.btnEnviar);
         btnEnviar.setOnClickListener(this);
 
-        media = criaAudios();
-        preferenciasModulo = getSharedPreferences("prefModulo",0);
+        tocaPalavra = (ImageButton) findViewById(R.id.tocaPalavra);
+        tocaPalavra.setOnClickListener(this);
+
+        palavraEscrita = (EditText) findViewById(R.id.palavraEscrita);
     }
 
     public ArrayList<MediaPlayer> criaAudios(){
@@ -102,19 +142,37 @@ public class Palavras_Faceis extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if(v == btnEnviar){
-            SharedPreferences.Editor escritor = preferenciasModulo.edit();
-            //Mudar aqui
-            //verificar se palavra está certa
-            if(true){
-                escritor.putString("verifica","true");
-            }else{
-                escritor.putString("verifica","false");
+        if(v == btnEnviar)
+        {
+            cont = 0;
+            SharedPreferences.Editor escritor = preferencia.edit();
+            escritor.putInt("palavra", contPalavra);
+            if(palavraEscrita == vetorPalavras[contPalavra])
+            {
+                contPalavra++;
+                Intent i = new Intent(this,Tela_acertou.class);
+                startActivity(i);
+
+            }
+            else{
+                Intent i = new Intent(this,Tela_Errou.class);
+                startActivity(i);
             }
             escritor.commit();
-
-            Intent i = new Intent(this, Tela_acertou.class);
-            startActivity(i);
+            this.finish();
         }
+        if(v == tocaPalavra)
+        {
+            if(cont != 3){
+                media.get(contPalavra).setOnCompletionListener(this);
+                media.get(contPalavra).start();
+                cont++;
+            }
+        }
+    }
+
+    @Override
+    public void onCompletion(MediaPlayer mp) {
+        mp.release();
     }
 }
