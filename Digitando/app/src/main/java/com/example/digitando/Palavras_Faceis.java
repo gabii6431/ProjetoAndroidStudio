@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,12 +18,13 @@ import java.util.Set;
 
 public class Palavras_Faceis extends Activity implements View.OnClickListener, MediaPlayer.OnCompletionListener {
     private Button btnEnviar;
-    private int contPalavra;
+    private int contPalavra; //variavel para controlar qual palavra o usuario esta atualmente no jogo
     private EditText palavraEscrita;
-    private boolean modulo1 = false , modulo2 = false , modulo3 = false;
-    private SharedPreferences preferencia;
-    private ArrayList<MediaPlayer> media = new ArrayList<MediaPlayer>(); // vetor de audios [0-9] - modulo 1 [10-19] - modulo 2 [20-29] - modulo 3
+    private boolean modulo1, modulo2, modulo3;
+    private SharedPreferences preferencia; //variavel utilizada para salvar o estado do jogo
+    private ArrayList<MediaPlayer> media = new ArrayList<MediaPlayer>(); // vetor de audios ([0-9] - modulo 1 [10-19] - modulo 2 [20-29] - modulo 3)
     private ImageButton tocaPalavra;
+    private ArrayList<String> vetorPalavras = new ArrayList<String>();
     private int cont = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,27 +35,30 @@ public class Palavras_Faceis extends Activity implements View.OnClickListener, M
         preferencia = getSharedPreferences("preferencia",0);
         int modulo = preferencia.getInt("modulo", 0);
         contPalavra = preferencia.getInt("palavra",0);
+        Log.d("Tag", "ContPalavra " +Integer.toString(contPalavra));
+        Log.d("Tag", "Modulo que chegou" + Integer.toString(modulo));
 
         //verificar em qual modulo ele esta
         //se modulo 1 - ir no vetor de 0-9
         //se modulo 2 - ir no vetor de 10-19
         //se modulo 3 - ir no  vetor de 20-29
 
-        if(modulo == 1 && !modulo1)
+/*        if(modulo == 1 && modulo1)
         {
+            Log.d("Tag", "Entrei modulo");
             contPalavra = 0;
-            modulo1 = true;
+            modulo1 = false;
         }
-        else if(modulo == 2 && !modulo2)
+        else if(modulo == 2 && modulo2)
         {
             contPalavra = 10;
-            modulo2 = true;
+            modulo2 = false;
         }
         else if (modulo == 3 && !modulo3)
         {
             contPalavra = 20;
-            modulo3 = true;
-        }
+            modulo3 = false;
+        }*/
 
         media.get(contPalavra).setOnCompletionListener(this);
         media.get(contPalavra).start();
@@ -136,6 +141,37 @@ public class Palavras_Faceis extends Activity implements View.OnClickListener, M
         media.add(tudo);
         media.add(vida);
 
+        vetorPalavras.add("ação");
+        vetorPalavras.add("afim");
+        vetorPalavras.add("ágil");
+        vetorPalavras.add("agir");
+        vetorPalavras.add("alfa");
+        vetorPalavras.add("alto");
+        vetorPalavras.add("amor");
+        vetorPalavras.add("auge");
+        vetorPalavras.add("aval");
+        vetorPalavras.add("casa");
+        vetorPalavras.add("cota");
+        vetorPalavras.add("erro");
+        vetorPalavras.add("fase");
+        vetorPalavras.add("grau");
+        vetorPalavras.add("joia");
+        vetorPalavras.add("juiz");
+        vetorPalavras.add("medo");
+        vetorPalavras.add("nexo");
+        vetorPalavras.add("ódio");
+        vetorPalavras.add("orla");
+        vetorPalavras.add("pose");
+        vetorPalavras.add("raso");
+        vetorPalavras.add("ruim");
+        vetorPalavras.add("seda");
+        vetorPalavras.add("sede");
+        vetorPalavras.add("sina");
+        vetorPalavras.add("soar");
+        vetorPalavras.add("trem");
+        vetorPalavras.add("tudo");
+        vetorPalavras.add("vida");
+
         return media;
 
     }
@@ -147,12 +183,14 @@ public class Palavras_Faceis extends Activity implements View.OnClickListener, M
             cont = 0;
             SharedPreferences.Editor escritor = preferencia.edit();
             escritor.putInt("palavra", contPalavra);
-            if(palavraEscrita == vetorPalavras[contPalavra])
+            Log.d("Tag",vetorPalavras.get(contPalavra));
+            Log.d("Tag",palavraEscrita.getText().toString());
+            if(palavraEscrita.getText().toString().equals(vetorPalavras.get(contPalavra)))
             {
                 contPalavra++;
+                escritor.putInt("palavra", contPalavra);
                 Intent i = new Intent(this,Tela_acertou.class);
                 startActivity(i);
-
             }
             else{
                 Intent i = new Intent(this,Tela_Errou.class);
