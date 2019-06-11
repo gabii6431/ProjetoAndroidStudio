@@ -4,19 +4,22 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.SeekBar;
 
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 
-public class Palavras_Faceis extends Activity implements View.OnClickListener, MediaPlayer.OnCompletionListener {
+public class Palavras_Faceis extends Activity implements View.OnClickListener, MediaPlayer.OnCompletionListener, View.OnTouchListener {
     private Button btnEnviar;
     private int contPalavra; //variavel para controlar qual palavra o usuario esta atualmente no jogo
     private EditText palavraEscrita;
@@ -25,40 +28,29 @@ public class Palavras_Faceis extends Activity implements View.OnClickListener, M
     private ArrayList<MediaPlayer> media = new ArrayList<MediaPlayer>(); // vetor de audios ([0-9] - modulo 1 [10-19] - modulo 2 [20-29] - modulo 3)
     private ImageButton tocaPalavra;
     private ArrayList<String> vetorPalavras = new ArrayList<String>();
+    private SeekBar progress;
     private int cont = 0;
+    private int valorProgressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         media = criaAudios();
         setContentView(R.layout.activity_palavras__faceis);
 
+        progress = (SeekBar) findViewById(R.id.seekBar);
+        progress.setOnTouchListener(this);
+
         preferencia = getSharedPreferences("preferencia",0);
+        //preferencia.edit().clear().commit();
         int modulo = preferencia.getInt("modulo", 0);
         contPalavra = preferencia.getInt("palavra",0);
+        valorProgressBar = preferencia.getInt("progress", 0);
+        progress.setProgress(valorProgressBar);
+        Log.d("Tag", "ValorProgress: " + Integer.toString(valorProgressBar));
+
         Log.d("Tag", "ContPalavra " +Integer.toString(contPalavra));
         Log.d("Tag", "Modulo que chegou" + Integer.toString(modulo));
 
-        //verificar em qual modulo ele esta
-        //se modulo 1 - ir no vetor de 0-9
-        //se modulo 2 - ir no vetor de 10-19
-        //se modulo 3 - ir no  vetor de 20-29
-
-/*        if(modulo == 1 && modulo1)
-        {
-            Log.d("Tag", "Entrei modulo");
-            contPalavra = 0;
-            modulo1 = false;
-        }
-        else if(modulo == 2 && modulo2)
-        {
-            contPalavra = 10;
-            modulo2 = false;
-        }
-        else if (modulo == 3 && !modulo3)
-        {
-            contPalavra = 20;
-            modulo3 = false;
-        }*/
 
         media.get(contPalavra).setOnCompletionListener(this);
         media.get(contPalavra).start();
@@ -189,8 +181,21 @@ public class Palavras_Faceis extends Activity implements View.OnClickListener, M
             {
                 contPalavra++;
                 escritor.putInt("palavra", contPalavra);
-                Intent i = new Intent(this,Tela_acertou.class);
-                startActivity(i);
+                if(valorProgressBar !=9)
+                {
+                    Log.d("Tag", "Entrei aq");
+                   progress.setProgress(valorProgressBar++);
+                   escritor.putInt("progress", valorProgressBar++);
+                   Intent i = new Intent(this,Tela_acertou.class);
+                   startActivity(i);
+                }
+                else
+                {
+                    escritor.putInt("progress", 0);
+                    Intent i = new Intent(this,ProximoModulo.class);
+                    startActivity(i);
+                    this.finish();
+                }
             }
             else{
                 Intent i = new Intent(this,Tela_Errou.class);
@@ -202,8 +207,17 @@ public class Palavras_Faceis extends Activity implements View.OnClickListener, M
         if(v == tocaPalavra)
         {
             if(cont != 3){
-                media.get(contPalavra).setOnCompletionListener(this);
-                media.get(contPalavra).start();
+                //media.get(contPalavra).stop();
+                media = null;
+                media = criaAudios();
+                Handler h = new Handler();
+                h.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        media.get(contPalavra).start();
+                    }
+                }, 1000);
+                //media.get(contPalavra).setOnCompletionListener(this);
                 cont++;
             }
         }
@@ -212,5 +226,10 @@ public class Palavras_Faceis extends Activity implements View.OnClickListener, M
     @Override
     public void onCompletion(MediaPlayer mp) {
         mp.release();
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        return true;
     }
 }

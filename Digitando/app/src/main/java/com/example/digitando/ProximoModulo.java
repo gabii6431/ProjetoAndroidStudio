@@ -16,13 +16,14 @@ public class ProximoModulo extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_proximo_modulo);
 
         btnProximoModulo = (Button) findViewById(R.id.btnProximoModulo);
+        btnProximoModulo.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         if(v == btnProximoModulo){
-            //receber a shared preference para poder ver em qual nivel está
-            //ver qual janela de nivel vai abrir
+            Intent i = new Intent(this, Modulos_Facil.class);
+            startActivity(i);
         }
     }
 }
