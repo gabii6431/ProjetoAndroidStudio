@@ -9,10 +9,12 @@
     <string name="moduloFacil1">Módulo 1</string>
     <string name="moduloFacil2">Módulo 2</string>
     <string name="moduloFacil3">Módulo 3</string>
-    <string name="faseFacil">Fase Fácil</string>
+    <string name="faseFacil">Nível Fácil</string>
+    <string name="faseMedio">Nível Médio</string>
     <string name="tempoRestante">Tempo Restante</string>
     <string name="digite">Digite a palavra</string>
     <string name="tempoFacil">60</string>
+    <string name="tempoMedio">70</string>
     <string name="enviar">Enviar</string>
     <string name="proxima">Próxima Palavra</string>
     <string name="proximoModulo">Próximo Módulo</string>
