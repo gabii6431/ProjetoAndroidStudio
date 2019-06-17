@@ -3,7 +3,6 @@ package com.example.digitando;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +10,7 @@ import android.widget.Button;
 public class Avancou_Nivel extends Activity implements View.OnClickListener{
     private Button proximoNivel;
     private SharedPreferences preferencia;
+    private int fase;
     @Override
     protected void onCreate(Bundle savedInstanceState)
 
@@ -22,6 +22,8 @@ public class Avancou_Nivel extends Activity implements View.OnClickListener{
         proximoNivel.setOnClickListener(this);
 
         preferencia = getSharedPreferences("preferencia",0);
+        fase = preferencia.getInt("fase",0);
+
 
     }
 
@@ -30,10 +32,23 @@ public class Avancou_Nivel extends Activity implements View.OnClickListener{
         SharedPreferences.Editor escritor = preferencia.edit();
         if(v == proximoNivel)
         {
-            Intent i = new Intent(this, Modulos_Medio.class);
-            escritor.putInt("modulo", 0);
-            escritor.commit();
-            startActivity(i);
+            if(fase == 1)
+            {
+                Intent i = new Intent(this, Modulos_Medio.class);
+                escritor.putInt("modulo", 0);
+                escritor.putInt("palavra",0);
+                escritor.commit();
+                startActivity(i);
+            }
+            else if(fase == 2)
+            {
+//                Intent i = new Intent(this, Modulos_Dificil.class);
+//                escritor.putInt("modulo", 0);
+//                escritor.putInt("palavra",0);
+//                escritor.commit();
+//                startActivity(i);
+            }
+
         }
     }
 }

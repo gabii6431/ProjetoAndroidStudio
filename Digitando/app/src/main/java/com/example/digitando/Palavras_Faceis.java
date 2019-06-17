@@ -178,7 +178,6 @@ public class Palavras_Faceis extends Activity implements View.OnClickListener, M
         {
             cont = 0;
             SharedPreferences.Editor escritor = preferencia.edit();
-            escritor.putInt("palavra", contPalavra);
             Log.d("Tag",vetorPalavras.get(contPalavra));
             Log.d("Tag",palavraEscrita.getText().toString());
             if(palavraEscrita.getText().toString().equals(vetorPalavras.get(contPalavra)))
@@ -195,23 +194,20 @@ public class Palavras_Faceis extends Activity implements View.OnClickListener, M
                     progressBar2+= 1;
                     escritor.putInt("progressMod2_Facil", progressBar2);
                 }
-                else if(modulo == 3)
-                {
+                else if(modulo == 3) {
                     Log.d("Tag", "Modulo que chegou: " + modulo);
-                    progressBar3+= 1;
+                    progressBar3 += 1;
                     escritor.putInt("progressMod3_Facil", progressBar3);
                 }
 
-                contPalavra++;
-                escritor.putInt("palavra", contPalavra);
-                if(valorProgressBar == 9 && contPalavra == 29)
+                if(contPalavra == 29)
                 {
                     escritor.putInt("progress", 0);
                     Intent i = new Intent(this,Avancou_Nivel.class);
                     startActivity(i);
                     this.finish();
                 }
-                if(valorProgressBar == 9)
+                else if(valorProgressBar == 9)
                 {
                     escritor.putInt("progress", 0);
                     Intent i = new Intent(this,ProximoModulo.class);
@@ -226,6 +222,8 @@ public class Palavras_Faceis extends Activity implements View.OnClickListener, M
                     Intent i = new Intent(this,Tela_acertou.class);
                     startActivity(i);
                 }
+                contPalavra++;
+                escritor.putInt("palavra", contPalavra);
             }
             else{
                 Intent i = new Intent(this,Tela_Errou.class);

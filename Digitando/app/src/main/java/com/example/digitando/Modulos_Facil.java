@@ -3,7 +3,6 @@ package com.example.digitando;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,7 +23,7 @@ public class Modulos_Facil extends Activity implements View.OnClickListener {
         preferencia = getSharedPreferences("preferencia",0);
         //preferencia.edit().clear().commit();
         int palavra = preferencia.getInt("palavra", 0);
-        Log.d("Tag", "Palavra "+ Integer.toString(palavra));
+        Log.d("Tag", "Palavra fácil "+ palavra);
 
         btnJogar = (Button) findViewById(R.id.btnJogar2);
         btnJogar.setOnClickListener(this);
@@ -37,9 +36,9 @@ public class Modulos_Facil extends Activity implements View.OnClickListener {
         valorProgressBar2 = preferencia.getInt("progressMod2_Facil", 0);
         valorProgressBar3 = preferencia.getInt("progressMod3_Facil", 0);
 
-        Log.d("Tag", "valorProgressBar1: " + valorProgressBar1);
-        Log.d("Tag", "valorProgressBar2: " + valorProgressBar2);
-        Log.d("Tag", "valorProgressBar3: " + valorProgressBar3);
+        Log.d("Tag", "valorProgressBar1 Fácil: " + valorProgressBar1);
+        Log.d("Tag", "valorProgressBar2 Fácil: " + valorProgressBar2);
+        Log.d("Tag", "valorProgressBar3 Fácil: " + valorProgressBar3);
 
         progressModulo1.setProgress(valorProgressBar1);
         progressModulo2.setProgress(valorProgressBar2);
@@ -66,7 +65,7 @@ public class Modulos_Facil extends Activity implements View.OnClickListener {
             SharedPreferences.Editor escritor = preferencia.edit();
             escritor.putInt("modulo", modulo);
             escritor.commit();
-            Log.d("Tag", "Modulo1" + Integer.toString(modulo));
+            Log.d("Tag", "Modulo Facil: " + Integer.toString(modulo));
             Intent i = new Intent(this, Palavras_Faceis.class);
             startActivity(i);
         }
