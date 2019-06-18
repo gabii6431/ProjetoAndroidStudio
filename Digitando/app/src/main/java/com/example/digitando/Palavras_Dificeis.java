@@ -4,22 +4,20 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
-import android.os.Handler;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.SeekBar;
 
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.Set;
 
-public class Palavras_Medias extends Activity implements View.OnClickListener, MediaPlayer.OnCompletionListener, View.OnTouchListener{
-
+public class Palavras_Dificeis extends Activity implements View.OnClickListener, MediaPlayer.OnCompletionListener, View.OnTouchListener{
     private Button btnEnviar;
     private int contPalavra; //variavel para controlar qual palavra o usuario esta atualmente no jogo
     private EditText palavraEscrita;
@@ -36,7 +34,7 @@ public class Palavras_Medias extends Activity implements View.OnClickListener, M
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_palavras_medias);
+        setContentView(R.layout.activity_palavras_dificeis);
         media = criaAudios();
         progress = (SeekBar) findViewById(R.id.seekBar);
         progress.setOnTouchListener(this);
@@ -46,9 +44,9 @@ public class Palavras_Medias extends Activity implements View.OnClickListener, M
         modulo = preferencia.getInt("modulo", 0);
         contPalavra = preferencia.getInt("palavra", 0);
         valorProgressBar = preferencia.getInt("progress", 0);
-        progressBar1 = preferencia.getInt("progressMod1_Medio", 0);
-        progressBar2 = preferencia.getInt("progressMod2_Medio", 0);
-        progressBar3 = preferencia.getInt("progressMod3_Medio", 0);
+        progressBar1 = preferencia.getInt("progressMod1_Dificil", 0);
+        progressBar2 = preferencia.getInt("progressMod2_Dificil", 0);
+        progressBar3 = preferencia.getInt("progressMod3_Dificil", 0);
         progress.setProgress(valorProgressBar);
         Log.d("Tag", "progressBar1: " + progressBar1);
         Log.d("Tag", "progressBar2: " + progressBar2);
@@ -70,103 +68,104 @@ public class Palavras_Medias extends Activity implements View.OnClickListener, M
     }
 
     public ArrayList<MediaPlayer> criaAudios(){
-        MediaPlayer ansia, etica, expor, icone, ideia, mexer, mutua, nobre, plena, porem, sagaz, senso, sutil, vicio, vigor, alheio, ambito, anseio, casual, cinico, comico, eficaz, enfase, exceto, faccao, habito, nocivo, objeto, ocioso, pressa;
-        ansia = MediaPlayer.create(this,R.raw.ansia);
-        etica = MediaPlayer.create(this,R.raw.etica);
-        expor = MediaPlayer.create(this,R.raw.expor);
-        icone = MediaPlayer.create(this,R.raw.icone);
-        ideia = MediaPlayer.create(this,R.raw.ideia);
-        mexer = MediaPlayer.create(this,R.raw.mexer);
-        mutua = MediaPlayer.create(this,R.raw.mutua);
-        nobre = MediaPlayer.create(this,R.raw.nobre);
-        plena = MediaPlayer.create(this,R.raw.plena);
-        porem = MediaPlayer.create(this,R.raw.porem);
-        sagaz = MediaPlayer.create(this,R.raw.sagaz);
-        senso = MediaPlayer.create(this,R.raw.senso);
-        sutil = MediaPlayer.create(this,R.raw.sutil);
-        vicio = MediaPlayer.create(this,R.raw.vicio);
-        vigor = MediaPlayer.create(this,R.raw.vigor);
+        MediaPlayer ambicao, analogo, atraves, audacia, cinismo, empatia, excesso, inferir, recesso, sucinto, alicerce, ascensao, complexo, eminente, empirico, inerente, invasivo, metodico, premissa, prodigio, analitico, concepcao, concessao, escrupulo, hegemonia, paradigma, perspicaz, persuadir, proposito, reciproco;
+        ambicao = MediaPlayer.create(this,R.raw.ambicao);
+        analogo = MediaPlayer.create(this,R.raw.analogo);
+        atraves = MediaPlayer.create(this,R.raw.atraves);
+        audacia = MediaPlayer.create(this,R.raw.audacia);
+        cinismo = MediaPlayer.create(this,R.raw.cinismo);
+        empatia = MediaPlayer.create(this,R.raw.empatia);
+        excesso = MediaPlayer.create(this,R.raw.excesso);
+        inferir = MediaPlayer.create(this,R.raw.inferir);
+        recesso = MediaPlayer.create(this,R.raw.recesso);
+        sucinto = MediaPlayer.create(this,R.raw.sucinto);
+        alicerce = MediaPlayer.create(this,R.raw.alicerce);
+        ascensao = MediaPlayer.create(this,R.raw.ascensao);
+        complexo = MediaPlayer.create(this,R.raw.complexo);
+        eminente = MediaPlayer.create(this,R.raw.eminente);
+        empirico = MediaPlayer.create(this,R.raw.empirico);
 
-        alheio = MediaPlayer.create(this,R.raw.alheio);
-        ambito = MediaPlayer.create(this,R.raw.ambito);
-        anseio = MediaPlayer.create(this,R.raw.anseio);
-        casual = MediaPlayer.create(this,R.raw.casual);
-        cinico = MediaPlayer.create(this,R.raw.cinico);
-        comico = MediaPlayer.create(this,R.raw.comico);
-        eficaz = MediaPlayer.create(this,R.raw.eficaz);
-        enfase = MediaPlayer.create(this,R.raw.enfase);
-        exceto = MediaPlayer.create(this,R.raw.exceto);
-        faccao = MediaPlayer.create(this,R.raw.faccao);
-        habito = MediaPlayer.create(this,R.raw.habito);
-        objeto = MediaPlayer.create(this,R.raw.objeto);
-        nocivo = MediaPlayer.create(this,R.raw.nocivo);
-        ocioso = MediaPlayer.create(this,R.raw.ocioso);
-        pressa = MediaPlayer.create(this,R.raw.pressa);
+        inerente = MediaPlayer.create(this,R.raw.inerente);
+        invasivo = MediaPlayer.create(this,R.raw.invasivo);
+        metodico = MediaPlayer.create(this,R.raw.metodico);
+        premissa = MediaPlayer.create(this,R.raw.premissa);
+        prodigio = MediaPlayer.create(this,R.raw.prodigio);
+        analitico = MediaPlayer.create(this,R.raw.analitico);
+        concepcao = MediaPlayer.create(this,R.raw.concepcao);
+        concessao = MediaPlayer.create(this,R.raw.concessao);
+        escrupulo = MediaPlayer.create(this,R.raw.escrupulo);
+        hegemonia = MediaPlayer.create(this,R.raw.hegemonia);
+        paradigma = MediaPlayer.create(this,R.raw.paradigma);
+        persuadir = MediaPlayer.create(this,R.raw.persuadir);
+        perspicaz = MediaPlayer.create(this,R.raw.perspicaz);
+        proposito = MediaPlayer.create(this,R.raw.proposito);
+        reciproco = MediaPlayer.create(this,R.raw.reciproco);
 
         ArrayList<MediaPlayer> media = new ArrayList<MediaPlayer>(); // vetor de audios [0-9] - modulo 1 [10-19] - modulo 2 [20-29] - modulo 3
 
-        media.add(ansia);
-        media.add(etica);
-        media.add(expor);
-        media.add(icone);
-        media.add(ideia);
-        media.add(mexer);
-        media.add(mutua);
-        media.add(nobre);
-        media.add(plena);
-        media.add(porem);
-        media.add(sagaz);
-        media.add(senso);
-        media.add(sutil);
-        media.add(vicio);
-        media.add(vigor);
-        media.add(alheio);
-        media.add(ambito);
-        media.add(anseio);
-        media.add(casual);
-        media.add(cinico);
-        media.add(comico);
-        media.add(eficaz);
-        media.add(enfase);
-        media.add(exceto);
-        media.add(faccao);
-        media.add(habito);
-        media.add(objeto);
-        media.add(nocivo);
-        media.add(ocioso);
-        media.add(pressa);
+        media.add(ambicao);
+        media.add(analogo);
+        media.add(atraves);
+        media.add(audacia);
+        media.add(cinismo);
+        media.add(empatia);
+        media.add(excesso);
+        media.add(inferir);
+        media.add(recesso);
+        media.add(sucinto);
+        media.add(alicerce);
+        media.add(ascensao);
+        media.add(complexo);
+        media.add(eminente);
+        media.add(empirico);
+        media.add(inerente);
+        media.add(invasivo);
+        media.add(metodico);
+        media.add(premissa);
+        media.add(prodigio);
+        media.add(analitico);
+        media.add(concepcao);
+        media.add(concessao);
+        media.add(escrupulo);
+        media.add(hegemonia);
+        media.add(paradigma);
+        media.add(perspicaz);
+        media.add(persuadir);
+        media.add(proposito);
+        media.add(reciproco);
 
-        vetorPalavras.add("ânsia");
-        vetorPalavras.add("ética");
-        vetorPalavras.add("expor");
-        vetorPalavras.add("ícone");
-        vetorPalavras.add("ideia");
-        vetorPalavras.add("mexer");
-        vetorPalavras.add("mútua");
-        vetorPalavras.add("nobre");
-        vetorPalavras.add("plena");
-        vetorPalavras.add("porém");
-        vetorPalavras.add("sagaz");
-        vetorPalavras.add("senso");
-        vetorPalavras.add("sutil");
-        vetorPalavras.add("vicío");
-        vetorPalavras.add("vigor");
+        vetorPalavras.add("ambição");
+        vetorPalavras.add("análogo");
+        vetorPalavras.add("através");
+        vetorPalavras.add("audácia");
+        vetorPalavras.add("cinismo");
+        vetorPalavras.add("empatia");
+        vetorPalavras.add("excesso");
+        vetorPalavras.add("inferir");
+        vetorPalavras.add("recesso");
+        vetorPalavras.add("sucinto");
 
-        vetorPalavras.add("alheio");
-        vetorPalavras.add("âmbito");
-        vetorPalavras.add("anseio");
-        vetorPalavras.add("casual");
-        vetorPalavras.add("cinico");
-        vetorPalavras.add("cômico");
-        vetorPalavras.add("eficaz");
-        vetorPalavras.add("ênfase");
-        vetorPalavras.add("exceto");
-        vetorPalavras.add("facção");
-        vetorPalavras.add("hábito");
-        vetorPalavras.add("objeto");
-        vetorPalavras.add("nocivo");
-        vetorPalavras.add("ocioso");
-        vetorPalavras.add("pressa");
+        vetorPalavras.add("alicerce");
+        vetorPalavras.add("ascensão");
+        vetorPalavras.add("complexo");
+        vetorPalavras.add("eminente");
+        vetorPalavras.add("empírico");
+        vetorPalavras.add("inerente");
+        vetorPalavras.add("invasivo");
+        vetorPalavras.add("metódico");
+        vetorPalavras.add("premissa");
+        vetorPalavras.add("prodígio");
+
+        vetorPalavras.add("analítico");
+        vetorPalavras.add("concepção");
+        vetorPalavras.add("concessão");
+        vetorPalavras.add("escrúpulo");
+        vetorPalavras.add("hegemonia");
+        vetorPalavras.add("paradigma");
+        vetorPalavras.add("perspicaz");
+        vetorPalavras.add("persuadir");
+        vetorPalavras.add("propósito");
+        vetorPalavras.add("recíproco");
 
         return media;
 
@@ -186,19 +185,19 @@ public class Palavras_Medias extends Activity implements View.OnClickListener, M
                 {
                     Log.d("Tag", "Modulo que chegou: " + modulo);
                     progressBar1+= 1;
-                    escritor.putInt("progressMod1_Medio", progressBar1);
+                    escritor.putInt("progressMod1_Dificil", progressBar1);
                 }
                 else if(modulo == 2)
                 {
                     Log.d("Tag", "Modulo que chegou: " + modulo);
                     progressBar2+= 1;
-                    escritor.putInt("progressMod2_Medio", progressBar2);
+                    escritor.putInt("progressMod2_Dificil", progressBar2);
                 }
                 else if(modulo == 3)
                 {
                     Log.d("Tag", "Modulo que chegou: " + modulo);
                     progressBar3+= 1;
-                    escritor.putInt("progressMod3_Medio", progressBar3);
+                    escritor.putInt("progressMod3_Dificil", progressBar3);
                 }
 
                 if(contPalavra == 29)

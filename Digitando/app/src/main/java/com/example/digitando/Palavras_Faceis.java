@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -15,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.SeekBar;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -36,7 +36,7 @@ public class Palavras_Faceis extends Activity implements View.OnClickListener, M
     private int valorProgressBar;
     private int modulo;
     private int progressBar1, progressBar2, progressBar3;
-    private int cont = 0, tempoRestante = 0, maxTempo = 65;
+    private int tempoRestante = 0, maxTempo = 65;
     private TextView txtTempoRestante;
     private String tempoString = "";
     private ConstraintLayout constraint;

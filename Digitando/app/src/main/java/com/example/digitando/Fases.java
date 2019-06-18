@@ -95,8 +95,8 @@ public class Fases extends Activity implements View.OnClickListener {
             else {
                 escritor.putInt("fase", 3);
                 escritor.commit();
-//              Intent i = new Intent(this, Modulos_Dificil.class);
-//              startActivity(i);
+                Intent i = new Intent(this, Modulos_Dificil.class);
+                startActivity(i);
             }
         }
     }
