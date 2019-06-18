@@ -9,21 +9,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
-public class Modulos_Facil extends Activity implements View.OnClickListener {
+public class Modulos_Medio extends Activity implements View.OnClickListener{
     private Button btnJogar;
     private ProgressBar progressModulo1, progressModulo2, progressModulo3;
     private SharedPreferences preferencia;
     private int valorProgressBar1, valorProgressBar2, valorProgressBar3;
     private int modulo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_modulos__facil);
+        setContentView(R.layout.activity_modulos_medio);
 
         preferencia = getSharedPreferences("preferencia",0);
         //preferencia.edit().clear().commit();
         int palavra = preferencia.getInt("palavra", 0);
-        Log.d("Tag", "Palavra fácil "+ palavra);
+        Log.d("Tag", "Palavra Médio "+ palavra);
 
         btnJogar = (Button) findViewById(R.id.btnJogar2);
         btnJogar.setOnClickListener(this);
@@ -32,13 +33,13 @@ public class Modulos_Facil extends Activity implements View.OnClickListener {
         progressModulo2 = (ProgressBar) findViewById(R.id.progressModulo2);
         progressModulo3 = (ProgressBar) findViewById(R.id.progressModulo3);
 
-        valorProgressBar1 = preferencia.getInt("progressMod1_Facil", 0);
-        valorProgressBar2 = preferencia.getInt("progressMod2_Facil", 0);
-        valorProgressBar3 = preferencia.getInt("progressMod3_Facil", 0);
+        valorProgressBar1 = preferencia.getInt("progressMod1_Medio", 0);
+        valorProgressBar2 = preferencia.getInt("progressMod2_Medio", 0);
+        valorProgressBar3 = preferencia.getInt("progressMod3_Medio", 0);
 
-        Log.d("Tag", "valorProgressBar1 Fácil: " + valorProgressBar1);
-        Log.d("Tag", "valorProgressBar2 Fácil: " + valorProgressBar2);
-        Log.d("Tag", "valorProgressBar3 Fácil: " + valorProgressBar3);
+        Log.d("Tag", "valorProgressBar1 Médio: " + valorProgressBar1);
+        Log.d("Tag", "valorProgressBar2 Médio: " + valorProgressBar2);
+        Log.d("Tag", "valorProgressBar3 Médio: " + valorProgressBar3);
 
         progressModulo1.setProgress(valorProgressBar1);
         progressModulo2.setProgress(valorProgressBar2);
@@ -65,8 +66,8 @@ public class Modulos_Facil extends Activity implements View.OnClickListener {
             SharedPreferences.Editor escritor = preferencia.edit();
             escritor.putInt("modulo", modulo);
             escritor.commit();
-            Log.d("Tag", "Modulo Facil: " + Integer.toString(modulo));
-            Intent i = new Intent(this, Palavras_Faceis.class);
+            Log.d("Tag", "Modulo Medio:" + modulo);
+            Intent i = new Intent(this, Palavras_Medias.class);
             startActivity(i);
         }
     }

@@ -27,11 +27,15 @@ public class Palavras_Faceis extends Activity implements View.OnClickListener, M
     private Button btnEnviar;
     private int contPalavra; //variavel para controlar qual palavra o usuario esta atualmente no jogo
     private EditText palavraEscrita;
-    private boolean modulo1, modulo2, modulo3;
     private SharedPreferences preferencia; //variavel utilizada para salvar o estado do jogo
     private ArrayList<MediaPlayer> media = new ArrayList<MediaPlayer>(); // vetor de audios ([0-9] - modulo 1 [10-19] - modulo 2 [20-29] - modulo 3)
     private ImageButton tocaPalavra;
     private ArrayList<String> vetorPalavras = new ArrayList<String>();
+    private SeekBar progress;
+    private int cont = 0;
+    private int valorProgressBar;
+    private int modulo;
+    private int progressBar1, progressBar2, progressBar3;
     private int cont = 0, tempoRestante = 0, maxTempo = 65;
     private TextView txtTempoRestante;
     private String tempoString = "";
@@ -47,11 +51,18 @@ public class Palavras_Faceis extends Activity implements View.OnClickListener, M
 
         preferencia = getSharedPreferences("preferencia",0);
         //preferencia.edit().clear().commit();
-        int modulo = preferencia.getInt("modulo", 0);
+        modulo = preferencia.getInt("modulo", 0);
         contPalavra = preferencia.getInt("palavra",0);
         valorProgressBar = preferencia.getInt("progress", 0);
+        progressBar1 = preferencia.getInt("progressMod1_Facil", 0);
+        progressBar2 = preferencia.getInt("progressMod2_Facil", 0);
+        progressBar3 = preferencia.getInt("progressMod3_Facil", 0);
         progress.setProgress(valorProgressBar);
-        Log.d("Tag", "ValorProgress: " + Integer.toString(valorProgressBar));
+        Log.d("Tag", "progressBar1: " + progressBar1);
+        Log.d("Tag", "progressBar2: " + progressBar2);
+        Log.d("Tag", "progressBar3: " + progressBar3);
+        Log.d("Tag", "ValorProgress: " + valorProgressBar);
+        Log.d("Tag", "ContPalavra " + contPalavra);
 
         Log.d("Tag", "ContPalavra " +Integer.toString(contPalavra));
         Log.d("Tag", "Modulo que chegou" + Integer.toString(modulo));
@@ -213,28 +224,52 @@ public class Palavras_Faceis extends Activity implements View.OnClickListener, M
         {
             cont = 0;
             SharedPreferences.Editor escritor = preferencia.edit();
-            escritor.putInt("palavra", contPalavra);
             Log.d("Tag",vetorPalavras.get(contPalavra));
             Log.d("Tag",palavraEscrita.getText().toString());
             if(palavraEscrita.getText().toString().equals(vetorPalavras.get(contPalavra)))
             {
-                contPalavra++;
-                escritor.putInt("palavra", contPalavra);
-                if(valorProgressBar !=9)
+                if(modulo == 1)
                 {
-                    Log.d("Tag", "Entrei aq");
-                   progress.setProgress(valorProgressBar++);
-                   escritor.putInt("progress", valorProgressBar++);
-                   Intent i = new Intent(this,Tela_acertou.class);
-                   startActivity(i);
+                    Log.d("Tag", "Modulo que chegou: " + modulo);
+                    progressBar1+= 1;
+                    escritor.putInt("progressMod1_Facil", progressBar1);
                 }
-                else
+                else if(modulo == 2)
+                {
+                    Log.d("Tag", "Modulo que chegou: " + modulo);
+                    progressBar2+= 1;
+                    escritor.putInt("progressMod2_Facil", progressBar2);
+                }
+                else if(modulo == 3) {
+                    Log.d("Tag", "Modulo que chegou: " + modulo);
+                    progressBar3 += 1;
+                    escritor.putInt("progressMod3_Facil", progressBar3);
+                }
+
+                if(contPalavra == 29)
+                {
+                    escritor.putInt("progress", 0);
+                    Intent i = new Intent(this,Avancou_Nivel.class);
+                    startActivity(i);
+                    this.finish();
+                }
+                else if(valorProgressBar == 9)
                 {
                     escritor.putInt("progress", 0);
                     Intent i = new Intent(this,ProximoModulo.class);
                     startActivity(i);
                     this.finish();
                 }
+                else
+                {
+                    Log.d("Tag", "Entrei aq");
+                    progress.setProgress(valorProgressBar++);
+                    escritor.putInt("progress", valorProgressBar++);
+                    Intent i = new Intent(this,Tela_acertou.class);
+                    startActivity(i);
+                }
+                contPalavra++;
+                escritor.putInt("palavra", contPalavra);
             }
             else{
                 Intent i = new Intent(this,Tela_Errou.class);
