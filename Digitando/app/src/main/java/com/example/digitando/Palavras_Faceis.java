@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Handler;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,11 +14,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.SeekBar;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.Delayed;
 
 public class Palavras_Faceis extends Activity implements View.OnClickListener, MediaPlayer.OnCompletionListener, View.OnTouchListener {
     private Button btnEnviar;
@@ -28,9 +32,10 @@ public class Palavras_Faceis extends Activity implements View.OnClickListener, M
     private ArrayList<MediaPlayer> media = new ArrayList<MediaPlayer>(); // vetor de audios ([0-9] - modulo 1 [10-19] - modulo 2 [20-29] - modulo 3)
     private ImageButton tocaPalavra;
     private ArrayList<String> vetorPalavras = new ArrayList<String>();
-    private SeekBar progress;
-    private int cont = 0;
-    private int valorProgressBar;
+    private int cont = 0, tempoRestante = 0, maxTempo = 65;
+    private TextView txtTempoRestante;
+    private String tempoString = "";
+    private ConstraintLayout constraint;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +56,15 @@ public class Palavras_Faceis extends Activity implements View.OnClickListener, M
         Log.d("Tag", "ContPalavra " +Integer.toString(contPalavra));
         Log.d("Tag", "Modulo que chegou" + Integer.toString(modulo));
 
+        constraint = (ConstraintLayout) getLayoutInflater().inflate(R.layout.activity_palavras__faceis,null);
+
+        txtTempoRestante = (TextView) constraint.findViewById(R.id.tempo);
+
+
+        //verificar em qual modulo ele esta
+        //se modulo 1 - ir no vetor de 0-9
+        //se modulo 2 - ir no vetor de 10-19
+        //se modulo 3 - ir no  vetor de 20-29
 
         media.get(contPalavra).setOnCompletionListener(this);
         media.get(contPalavra).start();
@@ -63,6 +77,31 @@ public class Palavras_Faceis extends Activity implements View.OnClickListener, M
         tocaPalavra.setOnClickListener(this);
 
         palavraEscrita = (EditText) findViewById(R.id.palavraEscrita);
+        tempoRestante = maxTempo;
+        Handler htempo = new Handler();
+
+        htempo.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                while(tempoRestante  > 0){
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    if (tempoRestante < 60){
+
+                        Log.d("TAG", Integer.toString(tempoRestante));
+                        tempoString = Integer.toString(tempoRestante);
+                        txtTempoRestante.setText(tempoString);
+                    }
+                    tempoRestante--;
+                }
+            }
+        }, 1000);
+
+
+
     }
 
     public ArrayList<MediaPlayer> criaAudios(){
