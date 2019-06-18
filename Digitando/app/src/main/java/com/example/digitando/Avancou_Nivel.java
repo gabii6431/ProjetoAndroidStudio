@@ -37,16 +37,20 @@ public class Avancou_Nivel extends Activity implements View.OnClickListener{
                 Intent i = new Intent(this, Modulos_Medio.class);
                 escritor.putInt("modulo", 0);
                 escritor.putInt("palavra",0);
+                escritor.putInt("fase",2);
                 escritor.commit();
                 startActivity(i);
+                this.finish();
             }
             else if(fase == 2)
             {
-//                Intent i = new Intent(this, Modulos_Dificil.class);
-//                escritor.putInt("modulo", 0);
-//                escritor.putInt("palavra",0);
-//                escritor.commit();
-//                startActivity(i);
+                //Intent i = new Intent(this, Modulos_Dificil.class);
+                escritor.putInt("modulo", 0);
+                escritor.putInt("palavra",0);
+                escritor.putInt("fase",3);
+                escritor.commit();
+                //startActivity(i);
+                this.finish();
             }
 
         }
