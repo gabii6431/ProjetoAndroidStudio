@@ -42,9 +42,9 @@ public class Tela_acertou extends Activity implements View.OnClickListener {
             }
             else
             {
-                //Intent i = new Intent(this, Palavras_Dificeis.class);
-                //startActivity(i);
-                //this.finish();
+                Intent i = new Intent(this, Palavras_Dificeis.class);
+                startActivity(i);
+                this.finish();
             }
 
         }

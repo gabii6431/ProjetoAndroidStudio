@@ -22,7 +22,7 @@ public class Fases extends Activity implements View.OnClickListener {
         //preferencia.edit().clear().commit();
         valorProgress_Facil = preferencia.getInt("progressMod3_Facil",0);
         valorProgress_Medio = preferencia.getInt("progressMod3_Medio",0);
-        //valorProgress_Dificil = preferencia.getInt("progressMod3_Dificil",0);
+        valorProgress_Dificil = preferencia.getInt("progressMod3_Dificil",0);
 
         btnFacil = (Button) findViewById(R.id.btnFacil);
         btnFacil.setOnClickListener(this);

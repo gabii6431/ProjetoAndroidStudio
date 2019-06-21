@@ -203,7 +203,7 @@ public class Palavras_Dificeis extends Activity implements View.OnClickListener,
                 if(contPalavra == 29)
                 {
                     escritor.putInt("progress", 0);
-                    Intent i = new Intent(this,Avancou_Nivel.class);
+                    Intent i = new Intent(this,Jogo_Finalizado.class);
                     startActivity(i);
                     this.finish();
                 }

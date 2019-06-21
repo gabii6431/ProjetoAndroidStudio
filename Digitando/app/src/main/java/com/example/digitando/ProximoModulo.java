@@ -41,9 +41,9 @@ public class ProximoModulo extends Activity implements View.OnClickListener {
             }
             else
             {
-//                Intent i = new Intent(this, Modulos_Dificil.class);
-//                startActivity(i);
-//                this.finish();
+                Intent i = new Intent(this, Modulos_Dificil.class);
+                startActivity(i);
+                this.finish();
             }
 
         }
