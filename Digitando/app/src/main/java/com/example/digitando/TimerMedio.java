@@ -10,12 +10,12 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 
-public class MyCountDownTimer extends CountDownTimer {
+public class TimerMedio extends CountDownTimer{
     private Context context;
     private TextView tv;
     private long timeInFuture;
 
-    public MyCountDownTimer(Context context, TextView tv, long timeInFuture,long interval){
+    public TimerMedio(Context context, TextView tv, long timeInFuture,long interval){
         super(timeInFuture, interval);
         this.tv = tv;
         this.context = context;
@@ -33,7 +33,7 @@ public class MyCountDownTimer extends CountDownTimer {
         timeInFuture -= 1000;
         tv.setText(getCorretcTimer(true,timeInFuture)+":"+getCorretcTimer(false,timeInFuture));
 
-        Intent i = new Intent(context,tempoEsgotado.class);
+        Intent i = new Intent(context,TempoEsgotadoMedio.class);
         context.startActivity(i);
     }
 
