@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -29,6 +30,8 @@ public class Palavras_Dificeis extends Activity implements View.OnClickListener,
     private int valorProgressBar;
     private int modulo;
     private int progressBar1, progressBar2, progressBar3;
+    private TextView txtTempoRestante;
+    private TimerMedio timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,12 @@ public class Palavras_Dificeis extends Activity implements View.OnClickListener,
         progressBar2 = preferencia.getInt("progressMod2_Dificil", 0);
         progressBar3 = preferencia.getInt("progressMod3_Dificil", 0);
         progress.setProgress(valorProgressBar);
+
+        //Cronometro
+        txtTempoRestante = (TextView) findViewById(R.id.tempo);
+        timer = new TimerMedio(this, txtTempoRestante, 1*90*1000, 1000);
+        timer.start();
+
 
         media.get(contPalavra).setOnCompletionListener(this);
         media.get(contPalavra).start();
@@ -262,6 +271,14 @@ public class Palavras_Dificeis extends Activity implements View.OnClickListener,
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         return true;
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        if(timer != null){
+            timer.cancel();
+        }
     }
 }
 
