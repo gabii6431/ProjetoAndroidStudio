@@ -21,7 +21,6 @@ public class Modulos_Facil extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_modulos__facil);
 
         preferencia = getSharedPreferences("preferencia",0);
-        //preferencia.edit().clear().commit();
         int palavra = preferencia.getInt("palavra", 0);
         Log.d("Tag", "Palavra fácil "+ palavra);
 

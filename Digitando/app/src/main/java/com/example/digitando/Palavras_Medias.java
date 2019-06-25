@@ -15,8 +15,6 @@ import android.widget.ImageButton;
 import android.widget.SeekBar;
 
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.Set;
 
 public class Palavras_Medias extends Activity implements View.OnClickListener, MediaPlayer.OnCompletionListener, View.OnTouchListener{
 
@@ -42,7 +40,6 @@ public class Palavras_Medias extends Activity implements View.OnClickListener, M
         progress.setOnTouchListener(this);
 
         preferencia = getSharedPreferences("preferencia", 0);
-        //preferencia.edit().clear().commit();
         modulo = preferencia.getInt("modulo", 0);
         contPalavra = preferencia.getInt("palavra", 0);
         valorProgressBar = preferencia.getInt("progress", 0);
@@ -50,11 +47,6 @@ public class Palavras_Medias extends Activity implements View.OnClickListener, M
         progressBar2 = preferencia.getInt("progressMod2_Medio", 0);
         progressBar3 = preferencia.getInt("progressMod3_Medio", 0);
         progress.setProgress(valorProgressBar);
-        Log.d("Tag", "progressBar1: " + progressBar1);
-        Log.d("Tag", "progressBar2: " + progressBar2);
-        Log.d("Tag", "progressBar3: " + progressBar3);
-        Log.d("Tag", "ValorProgress: " + valorProgressBar);
-        Log.d("Tag", "ContPalavra " + contPalavra);
 
         media.get(contPalavra).setOnCompletionListener(this);
         media.get(contPalavra).start();
@@ -178,8 +170,6 @@ public class Palavras_Medias extends Activity implements View.OnClickListener, M
         {
             cont = 0;
             SharedPreferences.Editor escritor = preferencia.edit();
-            Log.d("Tag",vetorPalavras.get(contPalavra));
-            Log.d("Tag",palavraEscrita.getText().toString());
             if(palavraEscrita.getText().toString().equals(vetorPalavras.get(contPalavra)))
             {
                 if(modulo == 1)
@@ -217,7 +207,6 @@ public class Palavras_Medias extends Activity implements View.OnClickListener, M
                 }
                 else
                 {
-                    Log.d("Tag", "Entrei aq");
                     progress.setProgress(valorProgressBar++);
                     escritor.putInt("progress", valorProgressBar++);
                     Intent i = new Intent(this,Tela_acertou.class);
@@ -236,8 +225,7 @@ public class Palavras_Medias extends Activity implements View.OnClickListener, M
         }
         if(v == tocaPalavra)
         {
-            if(cont != 3){
-                //media.get(contPalavra).stop();
+            if(cont != 2){
                 media = null;
                 media = criaAudios();
                 Handler h = new Handler();
@@ -246,9 +234,22 @@ public class Palavras_Medias extends Activity implements View.OnClickListener, M
                     public void run() {
                         media.get(contPalavra).start();
                     }
-                }, 1000);
-                //media.get(contPalavra).setOnCompletionListener(this);
+                }, 200);
                 cont++;
+            }
+            else if(cont == 2){
+                media = null;
+                media = criaAudios();
+                Handler h = new Handler();
+                h.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        media.get(contPalavra).start();
+                    }
+                }, 200);
+                cont++;
+                tocaPalavra.setImageResource(R.drawable.mudo);
+                tocaPalavra.setEnabled(false);
             }
         }
     }

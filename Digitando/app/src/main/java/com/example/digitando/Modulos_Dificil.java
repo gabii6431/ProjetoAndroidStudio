@@ -21,7 +21,6 @@ public class Modulos_Dificil extends Activity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modulos_dificil);
         preferencia = getSharedPreferences("preferencia",0);
-        //preferencia.edit().clear().commit();
         int palavra = preferencia.getInt("palavra", 0);
         Log.d("Tag", "Palavra Dificil "+ palavra);
 

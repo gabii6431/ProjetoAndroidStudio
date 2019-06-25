@@ -18,17 +18,15 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/tempoEsgotou"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/tempoEsgotou"
         app:layout_constraintTop_toBottomOf="@+id/tempoEsgotou"
-        app:layout_constraintVertical_bias="0.093" />
+        app:layout_constraintVertical_bias="0.076" />
 
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="461dp"
         android:layout_height="744dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
@@ -45,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="76dp"
         android:layout_marginLeft="76dp"
-        android:layout_marginBottom="396dp"
+        android:layout_marginBottom="360dp"
         android:text="@string/tempoEsgotado"
         android:textColor="#FBB002"
         android:textSize="33sp"

@@ -25,7 +25,7 @@
     <string name="estaProntoProxModulo">Está Pronto para mais um?</string>
     <string name="errou">Tente Novamente</string>
     <string name="erro1">Ops!</string>
-    <string name="erro2">O correto seria:</string>
+    <string name="erro2">Você errou!!</string>
     <string name="acertou1">Parabéns!</string>
     <string name="acabou">Você finalizou o jogo!</string>
     <string name="acertou2">Você</string>

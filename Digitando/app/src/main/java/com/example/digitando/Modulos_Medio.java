@@ -22,7 +22,6 @@ public class Modulos_Medio extends Activity implements View.OnClickListener{
         setContentView(R.layout.activity_modulos_medio);
 
         preferencia = getSharedPreferences("preferencia",0);
-        //preferencia.edit().clear().commit();
         int palavra = preferencia.getInt("palavra", 0);
         Log.d("Tag", "Palavra Médio "+ palavra);
 

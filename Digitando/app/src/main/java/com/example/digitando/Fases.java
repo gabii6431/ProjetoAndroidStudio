@@ -19,7 +19,6 @@ public class Fases extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_fases);
 
         preferencia = getSharedPreferences("preferencia",0);
-        //preferencia.edit().clear().commit();
         valorProgress_Facil = preferencia.getInt("progressMod3_Facil",0);
         valorProgress_Medio = preferencia.getInt("progressMod3_Medio",0);
         valorProgress_Dificil = preferencia.getInt("progressMod3_Dificil",0);
