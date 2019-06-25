@@ -16,6 +16,7 @@ public class tempoEsgotado extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_tempo_esgotado);
 
         btnTenteNovamente = (Button) findViewById(R.id.btnTente);
+        btnTenteNovamente.setOnClickListener(this);
 
     }
 
