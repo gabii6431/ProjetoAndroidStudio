@@ -33,7 +33,7 @@ public class Palavras_Medias extends Activity implements View.OnClickListener, M
     private int progressBar1, progressBar2, progressBar3;
 
     private TextView txtTempoRestante;
-    private MyCountDownTimer timer;
+    private TimerMedio timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +57,7 @@ public class Palavras_Medias extends Activity implements View.OnClickListener, M
 
         //Cronometro
         txtTempoRestante = (TextView) findViewById(R.id.tempo);
-        timer = new MyCountDownTimer(this, txtTempoRestante, 1*70*1000, 1000);
+        timer = new TimerMedio(this, txtTempoRestante, 1*70*1000, 1000);
         timer.start();
 
         //verificar em qual palavra que o usuario esta;
