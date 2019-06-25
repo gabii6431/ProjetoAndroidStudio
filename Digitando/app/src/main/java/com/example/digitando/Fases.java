@@ -60,7 +60,7 @@ public class Fases extends Activity implements View.OnClickListener {
                 builder.setMessage("Você ainda não finalizou o nível Fácil!");
                 builder.create().show();
             }
-            if (valorProgress_Medio == 10) {
+            else if (valorProgress_Medio == 10) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("Finalizou o nível Médio");
                 builder.setMessage("Você já finalizou o nível Médio, tente ir para o nível Difícil!");
@@ -86,7 +86,7 @@ public class Fases extends Activity implements View.OnClickListener {
                 builder.setMessage("Você ainda não finalizou o nível Médio!");
                 builder.create().show();
             }
-            if (valorProgress_Dificil == 10){
+            else if (valorProgress_Dificil == 10){
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("Você já finalizou o jogo");
                 builder.setMessage("Aguarde Atualizações!");
