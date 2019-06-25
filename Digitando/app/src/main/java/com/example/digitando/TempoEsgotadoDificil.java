@@ -21,7 +21,7 @@ public class TempoEsgotadoDificil extends Activity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         if(v == btnTenteNovamenteDificil){
-            Intent i = new Intent(this,Palavras_Medias.class);
+            Intent i = new Intent(this,Palavras_Dificeis.class);
             startActivity(i);
             this.finish();
         }
