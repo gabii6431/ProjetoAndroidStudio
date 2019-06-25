@@ -9,9 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".tempoEsgotado"></activity>
+        <activity android:name=".TempoEsgotadoDificil"></activity>
+        <activity android:name=".TempoEsgotadoMedio" />
+        <activity android:name=".tempoEsgotado" />
         <activity android:name=".Modulos_Medio" />
-        <activity android:name=".Jogo_Finalizado"></activity>
+        <activity android:name=".Jogo_Finalizado" />
         <activity android:name=".Palavras_Dificeis" />
         <activity android:name=".Modulos_Dificil" />
         <activity android:name=".Modulos_Medio" />
