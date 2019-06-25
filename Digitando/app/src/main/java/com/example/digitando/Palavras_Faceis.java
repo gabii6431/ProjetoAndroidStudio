@@ -53,6 +53,7 @@ public class Palavras_Faceis extends Activity implements View.OnClickListener, M
         progressBar3 = preferencia.getInt("progressMod3_Facil", 0);
         progress.setProgress(valorProgressBar);
 
+        //Cronometro
         txtTempoRestante = (TextView) findViewById(R.id.tempo);
         timer = new MyCountDownTimer(this, txtTempoRestante, 1*60*1000, 1000);
         timer.start();
@@ -279,7 +280,6 @@ public class Palavras_Faceis extends Activity implements View.OnClickListener, M
         if(timer != null){
             timer.cancel();
         }
-
     }
 
 }

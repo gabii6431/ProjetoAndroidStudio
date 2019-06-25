@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -30,6 +31,8 @@ public class Palavras_Medias extends Activity implements View.OnClickListener, M
     private int valorProgressBar;
     private int modulo;
     private int progressBar1, progressBar2, progressBar3;
+    private TextView txtTempoRestante;
+    private TimerMedio timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,11 @@ public class Palavras_Medias extends Activity implements View.OnClickListener, M
 
         media.get(contPalavra).setOnCompletionListener(this);
         media.get(contPalavra).start();
+
+        //Cronometro
+        txtTempoRestante = (TextView) findViewById(R.id.tempo);
+        timer = new TimerMedio(this, txtTempoRestante, 1*70*1000, 1000);
+        timer.start();
 
         //verificar em qual palavra que o usuario esta;
         btnEnviar = (Button) findViewById(R.id.btnEnviar);
@@ -262,6 +270,14 @@ public class Palavras_Medias extends Activity implements View.OnClickListener, M
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         return true;
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        if(timer != null){
+            timer.cancel();
+        }
     }
 }
 
