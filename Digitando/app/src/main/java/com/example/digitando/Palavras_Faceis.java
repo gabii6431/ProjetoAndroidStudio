@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.SeekBar;
 
@@ -40,9 +42,12 @@ public class Palavras_Faceis extends Activity implements View.OnClickListener, M
     private TextView txtTempoRestante;
     private String tempoString = "";
     private ConstraintLayout constraint;
+    private MyCountDownTimer timer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         media = criaAudios();
         setContentView(R.layout.activity_palavras__faceis);
 
@@ -67,10 +72,11 @@ public class Palavras_Faceis extends Activity implements View.OnClickListener, M
         Log.d("Tag", "ContPalavra " +Integer.toString(contPalavra));
         Log.d("Tag", "Modulo que chegou" + Integer.toString(modulo));
 
-        constraint = (ConstraintLayout) getLayoutInflater().inflate(R.layout.activity_palavras__faceis,null);
+        //constraint = (ConstraintLayout) getLayoutInflater().inflate(R.layout.activity_palavras__faceis,null);
 
-        txtTempoRestante = (TextView) constraint.findViewById(R.id.tempo);
-
+        txtTempoRestante = (TextView) findViewById(R.id.tempo);
+        timer = new MyCountDownTimer(this, txtTempoRestante, 1*60*1000, 1000);
+        timer.start();
 
         //verificar em qual modulo ele esta
         //se modulo 1 - ir no vetor de 0-9
@@ -88,20 +94,14 @@ public class Palavras_Faceis extends Activity implements View.OnClickListener, M
         tocaPalavra.setOnClickListener(this);
 
         palavraEscrita = (EditText) findViewById(R.id.palavraEscrita);
-        tempoRestante = maxTempo;
-        Handler htempo = new Handler();
+        //tempoRestante = maxTempo;
+        //Handler htempo = new Handler();
 
-        htempo.postDelayed(new Runnable() {
+        /*htempo.postDelayed(new Runnable() {
             @Override
             public void run() {
                 while(tempoRestante  > 0){
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
                     if (tempoRestante < 60){
-
                         Log.d("TAG", Integer.toString(tempoRestante));
                         tempoString = Integer.toString(tempoRestante);
                         txtTempoRestante.setText(tempoString);
@@ -109,7 +109,7 @@ public class Palavras_Faceis extends Activity implements View.OnClickListener, M
                     tempoRestante--;
                 }
             }
-        }, 1000);
+        }, 1000);*/
 
 
 
@@ -306,4 +306,14 @@ public class Palavras_Faceis extends Activity implements View.OnClickListener, M
     public boolean onTouch(View v, MotionEvent event) {
         return true;
     }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        if(timer != null){
+            timer.cancel();
+        }
+
+    }
+
 }

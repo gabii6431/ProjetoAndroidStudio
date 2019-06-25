@@ -34,5 +34,6 @@
     <string name="finalizar_zerar">Reiniciar</string>
     <string name="avancouNivel">Você avançou de nível!</string>
     <string name="proximoNivel">Próximo Nível</string>
+    <string name="tempoEsgotado">O tempo esgotou!</string>
 
 </resources>
