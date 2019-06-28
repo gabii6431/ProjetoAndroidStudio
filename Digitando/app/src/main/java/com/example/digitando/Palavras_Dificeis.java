@@ -31,7 +31,7 @@ public class Palavras_Dificeis extends Activity implements View.OnClickListener,
     private int modulo;
     private int progressBar1, progressBar2, progressBar3;
     private TextView txtTempoRestante;
-    private TimerMedio timer;
+    private TimerDificil timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,7 @@ public class Palavras_Dificeis extends Activity implements View.OnClickListener,
 
         //Cronometro
         txtTempoRestante = (TextView) findViewById(R.id.tempo);
-        timer = new TimerMedio(this, txtTempoRestante, 1*90*1000, 1000);
+        timer = new TimerDificil(this, txtTempoRestante, 1*60*1000, 1000);
         timer.start();
 
 
@@ -243,7 +243,7 @@ public class Palavras_Dificeis extends Activity implements View.OnClickListener,
                     public void run() {
                         media.get(contPalavra).start();
                     }
-                }, 200);
+                }, 0);
                 cont++;
             }
             else if(cont == 2){
@@ -255,7 +255,7 @@ public class Palavras_Dificeis extends Activity implements View.OnClickListener,
                     public void run() {
                         media.get(contPalavra).start();
                     }
-                }, 200);
+                }, 0);
                 cont++;
                 tocaPalavra.setImageResource(R.drawable.mudo);
                 tocaPalavra.setEnabled(false);

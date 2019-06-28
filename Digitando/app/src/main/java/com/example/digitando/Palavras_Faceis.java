@@ -244,7 +244,7 @@ public class Palavras_Faceis extends Activity implements View.OnClickListener, M
                     public void run() {
                         media.get(contPalavra).start();
                     }
-                }, 200);
+                }, 0);
                 cont++;
             }
             else if(cont == 2){
@@ -256,7 +256,7 @@ public class Palavras_Faceis extends Activity implements View.OnClickListener, M
                     public void run() {
                         media.get(contPalavra).start();
                     }
-                }, 200);
+                }, 0);
                 cont++;
                 tocaPalavra.setImageResource(R.drawable.mudo);
                 tocaPalavra.setEnabled(false);

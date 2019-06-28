@@ -35,7 +35,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         if (v == btnJogar){
             Intent i = new Intent(this, Fases.class);
             startActivity(i);
-            this.finish();
         }
         if (v == btnSair){
             this.finish();

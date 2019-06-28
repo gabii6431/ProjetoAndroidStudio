@@ -57,7 +57,7 @@ public class Palavras_Medias extends Activity implements View.OnClickListener, M
 
         //Cronometro
         txtTempoRestante = (TextView) findViewById(R.id.tempo);
-        timer = new TimerMedio(this, txtTempoRestante, 1*70*1000, 1000);
+        timer = new TimerMedio(this, txtTempoRestante, 1*60*1000, 1000);
         timer.start();
 
         //verificar em qual palavra que o usuario esta;
@@ -243,7 +243,7 @@ public class Palavras_Medias extends Activity implements View.OnClickListener, M
                     public void run() {
                         media.get(contPalavra).start();
                     }
-                }, 200);
+                }, 0);
                 cont++;
             }
             else if(cont == 2){
@@ -255,7 +255,7 @@ public class Palavras_Medias extends Activity implements View.OnClickListener, M
                     public void run() {
                         media.get(contPalavra).start();
                     }
-                }, 200);
+                }, 0);
                 cont++;
                 tocaPalavra.setImageResource(R.drawable.mudo);
                 tocaPalavra.setEnabled(false);
